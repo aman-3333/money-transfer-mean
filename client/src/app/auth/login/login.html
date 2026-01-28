@@ -1,0 +1,64 @@
+<div class="login-container">
+  <div class="login-wrapper">
+    <!-- Header Section -->
+    <div class="login-header">
+      <h1>Welcome Back</h1>
+      <p>Sign in to your account</p>
+    </div>
+
+    <!-- Login Form -->
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+      <mat-form-field appearance="outline" class="full-width custom-field">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" placeholder="john_doe">
+        <mat-icon matPrefix>person</mat-icon>
+        <mat-error *ngIf="loginForm.get('username')?.hasError('required')">
+          Username is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width custom-field">
+        <mat-label>Password</mat-label>
+        <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" placeholder="••••••••">
+        <mat-icon matPrefix>lock</mat-icon>
+        <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'"
+          type="button">
+          <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+          Password is required
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Captcha Section -->
+      <div class="captcha-box">
+        <div class="captcha-display" [innerHTML]="captchaSvg"></div>
+        <button mat-icon-button color="accent" type="button" (click)="getCaptcha()" matTooltip="Refresh Captcha">
+          <mat-icon>refresh</mat-icon>
+        </button>
+      </div>
+
+      <mat-form-field appearance="outline" class="full-width custom-field">
+        <mat-label>Enter Captcha</mat-label>
+        <input matInput formControlName="captchaValue" placeholder="Type characters above">
+        <mat-icon matPrefix>security</mat-icon>
+        <mat-error *ngIf="loginForm.get('captchaValue')?.hasError('required')">
+          Captcha is required
+        </mat-error>
+      </mat-form-field>
+
+      <div class="error-alert" *ngIf="errorMessage">
+        <mat-icon>error_outline</mat-icon>
+        <span>{{ errorMessage }}</span>
+      </div>
+
+      <button mat-flat-button color="primary" type="submit" [disabled]="loginForm.invalid" class="submit-btn">
+        Sign In
+      </button>
+
+      <div class="footer-links">
+        <a routerLink="/register">Create an account</a>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="dashboard-container">
+    <mat-card class="dashboard-card" *ngIf="user">
+        <div class="header">
+            <h2>Welcome, {{ user.username }}</h2>
+            <button mat-icon-button (click)="logout()" color="warn">
+                <mat-icon>logout</mat-icon>
+            </button>
+        </div>
+
+        <div class="balance-section">
+            <h3>Current Balance</h3>
+            <h1 class="balance-amount">{{ user.balance | currency:'USD' }}</h1>
+            <span class="role-badge">{{ user.role | uppercase }}</span>
+        </div>
+
+        <div class="actions-grid">
+            <button mat-raised-button color="primary" routerLink="/create-user">
+                <mat-icon>person_add</mat-icon> Create User
+            </button>
+            <button mat-raised-button color="accent" routerLink="/transfer">
+                <mat-icon>swap_horiz</mat-icon> Transfer Balance
+            </button>
+            <button mat-raised-button routerLink="/hierarchy">
+                <mat-icon>account_tree</mat-icon> My Downline
+            </button>
+            <button mat-raised-button routerLink="/history">
+                <mat-icon>history</mat-icon> Transactions
+            </button>
+        </div>
+    </mat-card>
+</div>

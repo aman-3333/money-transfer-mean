@@ -1,0 +1,49 @@
+.dashboard-container {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.dashboard-card {
+    width: 600px;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.balance-section {
+    text-align: center;
+    background: #f0f0f0;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.balance-amount {
+    font-size: 3em;
+    color: #3f51b5;
+    margin: 10px 0;
+}
+
+.role-badge {
+    background: #FFC107;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+.actions-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+button mat-icon {
+    margin-right: 8px;
+}

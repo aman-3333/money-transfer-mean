@@ -1,0 +1,49 @@
+<div class="container">
+    <button mat-button routerLink="/dashboard" class="back-btn">
+        <mat-icon>arrow_back</mat-icon> Back to Dashboard
+    </button>
+    <mat-card class="form-card gradient-card">
+        <mat-card-header class="card-header-gradient">
+            <div class="header-content">
+                <mat-icon class="header-icon">person_add</mat-icon>
+                <mat-card-title class="gradient-title">Create Next-Level User</mat-card-title>
+            </div>
+        </mat-card-header>
+        <mat-card-content class="card-content">
+            <form [formGroup]="createUserForm" (ngSubmit)="onSubmit()">
+                <mat-form-field appearance="outline" class="full-width colorful-field">
+                    <mat-label>
+                        <mat-icon class="field-icon">person</mat-icon>
+                        Username
+                    </mat-label>
+                    <input matInput formControlName="username">
+                    <mat-icon matSuffix class="suffix-icon">account_circle</mat-icon>
+                    <mat-error *ngIf="createUserForm.get('username')?.hasError('required')">
+                        <mat-icon class="error-icon">error</mat-icon> Username is required
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="full-width colorful-field">
+                    <mat-label>
+                        <mat-icon class="field-icon">lock</mat-icon>
+                        Password
+                    </mat-label>
+                    <input matInput type="password" formControlName="password">
+                    <mat-icon matSuffix class="suffix-icon">vpn_key</mat-icon>
+                    <mat-error *ngIf="createUserForm.get('password')?.hasError('required')">
+                        <mat-icon class="error-icon">error</mat-icon> Password is required
+                    </mat-error>
+                    <mat-error *ngIf="createUserForm.get('password')?.hasError('minlength')">
+                        <mat-icon class="error-icon">error</mat-icon> Min 6 characters
+                    </mat-error>
+                </mat-form-field>
+
+                <button mat-raised-button type="submit" [disabled]="createUserForm.invalid"
+                    class="full-width submit-btn gradient-button">
+                    <mat-icon>add_circle</mat-icon>
+                    Create User
+                </button>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

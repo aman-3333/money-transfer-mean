@@ -1,0 +1,24 @@
+<div class="container">
+    <button mat-button routerLink="/dashboard" class="back-btn">
+        <mat-icon>arrow_back</mat-icon> Back to Dashboard
+    </button>
+
+    <h2>Downline Hierarchy</h2>
+
+    <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+        <!-- This is the tree node template for leaf nodes -->
+        <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+            <button mat-icon-button disabled></button>
+            {{node.name}} - {{ node.balance | currency:'USD' }}
+        </mat-tree-node>
+        <!-- This is the tree node template for expandable nodes -->
+        <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
+            <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.name">
+                <mat-icon class="mat-icon-rtl-mirror">
+                    {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                </mat-icon>
+            </button>
+            {{node.name}} - {{ node.balance | currency:'USD' }}
+        </mat-tree-node>
+    </mat-tree>
+</div>
